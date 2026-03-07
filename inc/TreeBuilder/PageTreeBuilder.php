@@ -173,7 +173,7 @@ class PageTreeBuilder extends AbstractBuilder
         global $conf;
         $base = $conf['datadir'] . '/';
 
-        $files = glob($base . $dir . '/*.txt');
+        $files = glob($base . $dir . '/*.md');
         foreach ($files as $file) {
             $file = basename($file);
             $id = pathID($dir . '/' . $file);

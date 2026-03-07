@@ -1385,12 +1385,12 @@ function tpl_localeFN($id)
 {
     $path = tpl_incdir() . 'lang/';
     global $conf;
-    $file = DOKU_CONF . 'template_lang/' . $conf['template'] . '/' . $conf['lang'] . '/' . $id . '.txt';
+    $file = DOKU_CONF . 'template_lang/' . $conf['template'] . '/' . $conf['lang'] . '/' . $id . '.md';
     if (!file_exists($file)) {
-        $file = $path . $conf['lang'] . '/' . $id . '.txt';
+        $file = $path . $conf['lang'] . '/' . $id . '.md';
         if (!file_exists($file)) {
             //fall back to english
-            $file = $path . 'en/' . $id . '.txt';
+            $file = $path . 'en/' . $id . '.md';
         }
     }
     return $file;

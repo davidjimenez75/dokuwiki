@@ -310,8 +310,8 @@ function search_list(&$data, $base, $file, $type, $lvl, $opts)
 {
     //we do nothing with directories
     if ($type == 'd') return false;
-    //only search txt files
-    if (str_ends_with($file, '.txt')) {
+    //only search md files
+    if (str_ends_with($file, '.md')) {
         //check ACL
         $id = pathID($file);
         if (auth_quickaclcheck($id) < AUTH_READ) {
@@ -342,8 +342,8 @@ function search_pagename(&$data, $base, $file, $type, $lvl, $opts)
 {
     //we do nothing with directories
     if ($type == 'd') return true;
-    //only search txt files
-    if (!str_ends_with($file, '.txt')) return true;
+    //only search md files
+    if (!str_ends_with($file, '.md')) return true;
 
     //simple stringmatching
     if (!empty($opts['query'])) {
@@ -394,8 +394,8 @@ function search_allpages(&$data, $base, $file, $type, $lvl, $opts)
         return true;
     }
 
-    //only search txt files
-    if (!str_ends_with($file, '.txt')) return true;
+    //only search md files
+    if (!str_ends_with($file, '.md')) return true;
 
     $item = [];
     $item['id']   = pathID($file);
@@ -455,7 +455,7 @@ function pathID($path, $keeptxt = false)
 {
     $id = utf8_decodeFN($path);
     $id = str_replace('/', ':', $id);
-    if (!$keeptxt) $id = preg_replace('#\.txt$#', '', $id);
+    if (!$keeptxt) $id = preg_replace('#\.md$#', '', $id);
     $id = trim($id, ':');
     return $id;
 }
@@ -555,7 +555,7 @@ function search_universal(&$data, $base, $file, $type, $lvl, $opts)
     } else {
         if (empty($opts['listfiles'])) return $return;
         if (empty($opts['skipacl']) && $item['perm'] < AUTH_READ) return $return;
-        if (!empty($opts['pagesonly']) && !str_ends_with($file, '.txt')) return $return;
+        if (!empty($opts['pagesonly']) && !str_ends_with($file, '.md')) return $return;
         if (empty($opts['showhidden']) && isHiddenPage($item['id'])) return $return;
         if (!empty($opts['filematch']) && !preg_match('/' . $opts['filematch'] . '/', $file)) return $return;
         if (!empty($opts['idmatch']) && !preg_match('/' . $opts['idmatch'] . '/', $item['id'])) return $return;

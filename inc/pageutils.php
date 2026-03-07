@@ -346,9 +346,9 @@ function wikiFN($raw_id, $rev = '', $clean = true)
     }
 
     if (empty($rev)) {
-        $fn = $conf['datadir'] . '/' . utf8_encodeFN($id) . '.txt';
+        $fn = $conf['datadir'] . '/' . utf8_encodeFN($id) . '.md';
     } else {
-        $fn = $conf['olddir'] . '/' . utf8_encodeFN($id) . '.' . $rev . '.txt';
+        $fn = $conf['olddir'] . '/' . utf8_encodeFN($id) . '.' . $rev . '.md';
         if ($conf['compression']) {
             //test for extensions here, we want to read both compressions
             if (file_exists($fn . '.gz')) {
@@ -478,7 +478,7 @@ function mediaFN($id, $rev = '', $clean = true)
  *
  * @author Andreas Gohr <andi@splitbrain.org>
  */
-function localeFN($id, $ext = 'txt')
+function localeFN($id, $ext = 'md')
 {
     global $conf;
     $file = DOKU_CONF . 'lang/' . $conf['lang'] . '/' . $id . '.' . $ext;
